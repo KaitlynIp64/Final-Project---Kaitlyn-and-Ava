@@ -112,9 +112,9 @@ class GameScene extends Phaser.Scene {
         this.createAlien()
       }.bind(this)
       
-
     // Collisions between ship and aliens
     this.physics.add.collider(
+      
       this.ship,
       this.alienGroup,
       function (shipCollide, alienCollide) {
