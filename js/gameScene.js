@@ -186,5 +186,5 @@ class GameScene extends Phaser.Scene {
         item.destroy()
       }
     })
-  }
-    export default GameScene 
+
+export default GameScene 
