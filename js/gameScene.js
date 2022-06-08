@@ -113,6 +113,7 @@ class GameScene extends Phaser.Scene {
       }.bind(this)
     )
 
+  }
     // Collisions between ship and aliens
     this.physics.add.collider(
       this.ship,
@@ -187,6 +188,5 @@ class GameScene extends Phaser.Scene {
       }
     })
   }
-  } 
 }
 export default GameScene
