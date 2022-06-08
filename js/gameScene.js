@@ -130,8 +130,8 @@ class GameScene extends Phaser.Scene {
             this.gameOverTextStyle
           )
           .setOrigin(0.5)
-          this.gameOverText.setInteractive({ userHandCursor: true })
-          this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
+        this.gameOverText.setInteractive({ userHandCursor: true })
+        this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
       }.bind(this)
     )
   }
