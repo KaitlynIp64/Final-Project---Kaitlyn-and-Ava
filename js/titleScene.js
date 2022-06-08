@@ -41,7 +41,7 @@ class TitleScene extends Phaser.Scene {
    */
   preload() {
     console.log("Title Scene")
-    this.load.image("titleSceneBackground", "assets/aliens_screen_image.jpg")
+    this.load.image("titleSceneBackground", "assets/2qPZoW54 (1).png")
   }
 
   /**
@@ -57,7 +57,7 @@ class TitleScene extends Phaser.Scene {
     this.titleSceneBackgroundImage.y = 1080 / 2
 
     this.titleSceneText = this.add
-      .text(1920 / 2, 1080 / 2 + 350, "Space Aliens", this.titleSceneTextStyle)
+      .text(1920 / 2, 1080 / 2 + 350, "BakuRun", this.titleSceneTextStyle)
       .setOrigin(0.5)
     //pass
   }

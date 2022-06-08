@@ -40,7 +40,7 @@ class MenuScene extends Phaser.Scene {
       "menuSceneBackground",
       "assets/176ba32b1465bdfc3cee5d38ca9e160e.png"
     )
-    this.load.image("startButton", "assets/start.png")
+    this.load.image("startButton", "assets/Start-Button-Vector-PNG.png")
   }
 
   /**
