@@ -104,7 +104,7 @@ update() {
     this.moveShip()
 }
 
-moveKid() {
+moveShip() {
     if (this.cursorKeys.left.isDown) {
         this.ship.setVelocityX(-300)
     } else if (this.cursorKeys.right.isDown) {
@@ -187,11 +187,7 @@ moveKid() {
         this.ship.x = 1920
       }
     }
-    if (keyUpObj.isDown && ship.body.touching.down)
-{
-    ship.setVelocityY(-330);
-}
-    
+
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
         // fire missile
