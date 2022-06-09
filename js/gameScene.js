@@ -29,7 +29,7 @@ class GameScene extends Phaser.Scene {
   constructor() {
     super({ key: "gameScene" })
 
-    this.background = null
+    this.background = (1920 * 2, 1080)
     this.ship = null
     this.fireMissile = false
     this.score = 0
@@ -79,12 +79,12 @@ class GameScene extends Phaser.Scene {
    * @param {object} data - Any data via ScenePlugin.add() or ScenePlugin.start().
    */
   create(data) {
-    this.background = this.add.image(0, 0, "starBackground").setScale(2.0)
-    this.background.setOrigin(0, 0)
+    this.background = this.add.image(0,0, "starBackground").setScale(2.0)
+    this.background.setOrigin(0,0)
 
     this.scoreText = this.add.text(
-      10,
-      10,
+      100,
+      100,
       "Score: " + this.score.toString(),
       this.scoreTextStyle
     )
