@@ -129,7 +129,7 @@ class GameScene extends Phaser.Scene {
             callbackScope: this,
             loop: true
         });
-        // this.ball.setVelocityY(-100);
+        // this.ship.setVelocityY(-100);
     }
     /*
     end the jump when the pointer is up
