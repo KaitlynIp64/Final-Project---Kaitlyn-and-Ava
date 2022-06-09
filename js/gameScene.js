@@ -154,7 +154,6 @@ class GameScene extends Phaser.Scene {
         this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
       }.bind(this)
     )
-  }
   /**
    * Should be overridden by your own Scenes.
    * This method is called once per game step while the scene is running.
