@@ -109,7 +109,6 @@ class GameScene extends Phaser.Scene {
     update() {
         //constant running loop
     }
-}
 
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
