@@ -91,31 +91,25 @@ class GameScene extends Phaser.Scene {
 
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 200, "ship")
 
-    this.ship = this.physics.add.sprite(50, 380, 'idle');
-    this.ship.setScale(.3);
-    this.ship.setGravityY(300);
-    this.ship.setBounce(0.2);
-    this.ship.setCollideWorldBounds(true);
-    this.physics.add.collider(this.ship, this.platforms);
-    this.cursorKeys = this.input.keyboard.createCursorKeys()
-}
-
-update() {
-    this.moveShip()
-}
-
-moveShip() {
-    if (this.cursorKeys.left.isDown) {
-        this.ship.setVelocityX(-300)
-    } else if (this.cursorKeys.right.isDown) {
-        this.ship.setVelocityX(300)
-    } else {
-        this.ship.setVelocityX(0);
-        this.ship.setVelocityY(0);
+    //define our objects
+    let ship = this.physics.add.sprite(this.sys.game.config.width / 2, 0, "ship");
+    //set the gravity
+    ship.setGravityY(100);
+    //place the ground
+    let groundX = this.sys.game.config.width / 2;
+    let groundY = this.sys.game.config.height * .95;
+    let ground = this.physics.add.sprite(groundX, groundY, "block");
+    //size the ground
+    ground.displayWidth = this.sys.game.config.width * 1.1;
+    //make the ground stay in place
+    ground.setImmovable();
+    //add the colliders
+    this.physics.add.collider(ship, ground);
     }
-    if (this.cursorKeys.up.isDown && this.ship.body.touching.down) {
-        this.ship.setVelocityY(-300);
+    update() {
+        //constant running loop
     }
+}
 
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
