@@ -116,9 +116,9 @@ moveKid() {
     if (this.cursorKeys.up.isDown && this.ship.body.touching.down) {
         this.ship.setVelocityY(-300);
     }
-}
+
     // create a group for the missiles
-    thismissileGroup = this.physics.add.group()
+    this.missileGroup = this.physics.add.group()
 
     // create a group for the aliens
     this.alienGroup = this.add.group()
