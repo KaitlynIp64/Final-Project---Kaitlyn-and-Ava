@@ -91,24 +91,64 @@ class GameScene extends Phaser.Scene {
 
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 200, "ship")
 
-    //define our objects
-    let ship = this.physics.add.sprite(this.sys.game.config.width / 2, 0, "ship");
-    //set the gravity
-    ship.setGravityY(100);
-    //place the ground
-    let groundX = this.sys.game.config.width / 2;
-    let groundY = this.sys.game.config.height * .95;
-    let ground = this.physics.add.sprite(groundX, groundY, "block");
-    //size the ground
-    ground.displayWidth = this.sys.game.config.width * 1.1;
-    //make the ground stay in place
-    ground.setImmovable();
-    //add the colliders
-    this.physics.add.collider(ship, ground);
+       //DIVIDER
+    
+    this.power = 0;
+        //define our objects
+        //
+        //
+        //ball
+        this.ship = this.physics.add.sprite(this.sys.game.config.width / 2, 0, "ship");
+        this.ship.setGravityY(100);
+        //
+        //
+        //
+        //ground
+        //
+        //
+        let ground = this.physics.add.sprite(this.sys.game.config.width / 2, this.sys.game.config.height * .95, "block");
+        ground.displayWidth = this.sys.game.config.width * 1.1;
+        ground.setImmovable();
+        //
+        //
+        //
+        //set collider
+        //
+        //
+        this.physics.add.collider(this.ship, ground);
+        this.input.on('pointerdown', this.startJump, this);
+        this.input.on('pointerup', this.endJump, this);
+    }
+    /*
+    start the jump when the pointer goes down
+     */
+    startJump() {
+        this.timer = this.time.addEvent({
+            delay: 100,
+            callback: this.tick,
+            callbackScope: this,
+            loop: true
+        });
+        // this.ball.setVelocityY(-100);
+    }
+    /*
+    end the jump when the pointer is up
+     */
+    endJump() {
+        this.timer.remove();
+        this.ball.setVelocityY(-this.power * 100);
+        this.power = 0;
+    }
+    tick() {
+        if (this.power < 5) {
+            this.power += .1;
+            console.log(this.power);
+        }
     }
     update() {
         //constant running loop
     }
+}
 
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
@@ -153,6 +193,7 @@ class GameScene extends Phaser.Scene {
         this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
       }.bind(this)
     )
+  }
   /**
    * Should be overridden by your own Scenes.
    * This method is called once per game step while the scene is running.
