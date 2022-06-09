@@ -91,6 +91,32 @@ class GameScene extends Phaser.Scene {
 
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 200, "ship")
 
+    this.ship = this.physics.add.sprite(50, 380, 'idle');
+    this.ship.setScale(.3);
+    this.ship.setGravityY(300);
+    this.ship.setBounce(0.2);
+    this.ship.setCollideWorldBounds(true);
+    this.physics.add.collider(this.ship, this.platforms);
+    this.cursorKeys = this.input.keyboard.createCursorKeys()
+}
+
+update() {
+    this.moveShip()
+}
+
+moveKid() {
+    if (this.cursorKeys.left.isDown) {
+        this.ship.setVelocityX(-300)
+    } else if (this.cursorKeys.right.isDown) {
+        this.ship.setVelocityX(300)
+    } else {
+        this.ship.setVelocityX(0);
+        this.ship.setVelocityY(0);
+    }
+    if (this.cursorKeys.up.isDown && this.ship.body.touching.down) {
+        this.ship.setVelocityY(-300);
+    }
+}
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
 
@@ -161,7 +187,11 @@ class GameScene extends Phaser.Scene {
         this.ship.x = 1920
       }
     }
-
+    if (keyUpObj.isDown && ship.body.touching.down)
+{
+    ship.setVelocityY(-330);
+}
+    
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
         // fire missile
