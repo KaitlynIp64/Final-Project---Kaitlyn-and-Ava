@@ -41,7 +41,7 @@ class TitleScene extends Phaser.Scene {
    */
   preload() {
     console.log("Title Scene")
-    this.load.image("titleSceneBackground", "assets/aliens_screen_image.jpg")
+    this.load.image("titleSceneBackground", "assets/background1.png")
   }
 
   /**
@@ -52,14 +52,13 @@ class TitleScene extends Phaser.Scene {
   create(data) {
     this.titleSceneBackgroundImage = this.add
       .sprite(0, 0, "titleSceneBackground")
-      .setScale(2.75)
+      .setScale(0.5)
     this.titleSceneBackgroundImage.x = 1920 / 2
     this.titleSceneBackgroundImage.y = 1080 / 2
 
     this.titleSceneText = this.add
-      .text(1920 / 2, 1080 / 2 + 350, "Space Aliens", this.titleSceneTextStyle)
+      .text(1920 / 2, 1080 / 2 + 350, "BakuRun", this.titleSceneTextStyle)
       .setOrigin(0.5)
-    //pass
   }
 
   /**
@@ -69,8 +68,10 @@ class TitleScene extends Phaser.Scene {
    * @param {number} delta - The delta time in ms since the last frame.
    */
   update(time, delta) {
-    if (time > 6000) this.scene.switch("menuScene")
-    // pass
+    if (time > 6000) {
+      this.scene.switch("menuScene")
+      // pass
+    }
   }
 }
 
