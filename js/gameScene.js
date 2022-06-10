@@ -185,10 +185,7 @@ class GameScene extends Phaser.Scene {
             console.log(this.power);
         }
     }
-    update() {
-        //constant running loop
-    }
-}
+  }
 
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
