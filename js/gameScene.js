@@ -143,7 +143,6 @@ class GameScene extends Phaser.Scene {
    */
   update(time, delta) {
     // called 60 times a second, hopefully!
-
     const keyLeftObj = this.input.keyboard.addKey("LEFT")
     const keyRightObj = this.input.keyboard.addKey("RIGHT")
     const keySpaceObj = this.input.keyboard.addKey("SPACE")
