@@ -29,7 +29,7 @@ class GameScene extends Phaser.Scene {
   constructor() {
     super({ key: "gameScene" })
 
-    this.background = null
+    this.background = (1920 * 2, 1080)
     this.ship = null
     this.fireMissile = false
     this.score = 0
@@ -83,8 +83,8 @@ class GameScene extends Phaser.Scene {
     this.background.setOrigin(0, 0)
 
     this.scoreText = this.add.text(
-      10,
-      10,
+      100,
+      100,
       "Score: " + this.score.toString(),
       this.scoreTextStyle
     )
@@ -143,7 +143,6 @@ class GameScene extends Phaser.Scene {
    */
   update(time, delta) {
     // called 60 times a second, hopefully!
-
     const keyLeftObj = this.input.keyboard.addKey("LEFT")
     const keyRightObj = this.input.keyboard.addKey("RIGHT")
     const keySpaceObj = this.input.keyboard.addKey("SPACE")
