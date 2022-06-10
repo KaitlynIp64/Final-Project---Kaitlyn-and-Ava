@@ -134,33 +134,7 @@ class GameScene extends Phaser.Scene {
         this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
       }.bind(this)
     )
-        //Divider
-    this.ship = this.physics.add.sprite(50, 380, 'idle');
-    this.ship.setScale(.3);
-    this.ship.setGravityY(300);
-    this.ship.setBounce(0.2);
-    this.ship.setCollideWorldBounds(true);
-    this.physics.add.collider(this.ship, this.platforms);
-    this.cursorKeys = this.input.keyboard.createCursorKeys()
-}
-
-update() {
-    this.moveShip()
-}
-
-moveShip() {
-    if (this.cursorKeys.left.isDown) {
-        this.ship.setVelocityX(-300)
-    } else if (this.cursorKeys.right.isDown) {
-        this.ship.setVelocityX(300)
-    } else {
-        this.ship.setVelocityX(0);
-        this.ship.setVelocityY(0);
-    }
-    if (this.cursorKeys.up.isDown && this.ship.body.touching.down) {
-        this.ship.setVelocityY(-300);
-    }
-}
+  }
 
   /**
    * Should be overridden by your own Scenes.
@@ -173,6 +147,7 @@ moveShip() {
 
     const keyLeftObj = this.input.keyboard.addKey("LEFT")
     const keyRightObj = this.input.keyboard.addKey("RIGHT")
+    const keyUpObj = this.input.keyboard.addKey("UP")
     const keySpaceObj = this.input.keyboard.addKey("SPACE")
 
     if (keyLeftObj.isDown === true) {
@@ -188,6 +163,31 @@ moveShip() {
         this.ship.x = 1920
       }
     }
+
+    if (keyUpObj.isDown === true) {
+      startJump() {
+        this.timer = this.time.addEvent({
+            delay: 100,
+            callback: this.tick,
+            callbackScope: this,
+            loop: true
+        });
+    }
+    endJump() {
+        this.timer.remove();
+        this.ball.setVelocityY(-this.power * 100);
+        this.power = 0;
+    }
+    tick() {
+        if (this.power < 5) {
+            this.power += .1;
+            console.log(this.power);
+        }
+    }
+    update() {
+        //constant running loop
+    }
+}
 
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
