@@ -175,7 +175,7 @@ class GameScene extends Phaser.Scene {
     }
     endJump() {
         this.timer.remove();
-        this.ball.setVelocityY(-this.power * 100);
+        this.ship.setVelocityY(-this.power * 100);
         this.power = 0;
     }
     tick() {
