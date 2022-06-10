@@ -166,13 +166,14 @@ class GameScene extends Phaser.Scene {
 
     if (keyUpObj.isDown === true) {
       startJump() {
-        this.timer = this.time.addEvent({
+        this.timer = this.time.addEvent( {
             delay: 100,
             callback: this.tick,
             callbackScope: this,
             loop: true
         });
     }
+      
     endJump() {
         this.timer.remove();
         this.ship.setVelocityY(-this.power * 100);
