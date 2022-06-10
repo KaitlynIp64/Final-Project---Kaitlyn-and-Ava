@@ -67,10 +67,6 @@ class GameScene extends Phaser.Scene {
     this.load.image("ship", "assets/oie_8185832gsYBY41F-removebg-preview.png")
     this.load.image("missile", "assets/missile.png")
     this.load.image("alien", "assets/alien.png")
-    // sound
-    this.load.audio("laser", "assets/laser1.wav")
-    this.load.audio("explosion", "assets/barrelExploding.wav")
-    this.load.audio("bomb", "assets/bomb.wav")
   }
 
   /**
@@ -165,7 +161,7 @@ class GameScene extends Phaser.Scene {
     }
 
     if (keyUpObj.isDown === true) {
-      startJump() {
+      startJump(); {
         this.timer = this.time.addEvent( {
             delay: 100,
             callback: this.tick,
@@ -174,12 +170,12 @@ class GameScene extends Phaser.Scene {
         });
     }
       
-    endJump() {
+    endJump(); {
         this.timer.remove();
         this.ship.setVelocityY(-this.power * 100);
         this.power = 0;
     }
-    tick() {
+    tick(); {
         if (this.power < 5) {
             this.power += .1;
             console.log(this.power);
