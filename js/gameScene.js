@@ -91,65 +91,6 @@ class GameScene extends Phaser.Scene {
 
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 200, "ship")
 
-       //DIVIDER
-    
-    this.power = 0;
-        //define our objects
-        //
-        //
-        //ball
-        this.ship = this.physics.add.sprite(this.sys.game.config.width / 2, 0, "ship");
-        this.ship.setGravityY(100);
-        //
-        //
-        //
-        //ground
-        //
-        //
-        let ground = this.physics.add.sprite(this.sys.game.config.width / 2, this.sys.game.config.height * .95, "block");
-        ground.displayWidth = this.sys.game.config.width * 1.1;
-        ground.setImmovable();
-        //
-        //
-        //
-        //set collider
-        //
-        //
-        this.physics.add.collider(this.ship, ground);
-        this.input.on('pointerdown', this.startJump, this);
-        this.input.on('pointerup', this.endJump, this);
-    }
-    /*
-    start the jump when the pointer goes down
-     */
-    startJump() {
-        this.timer = this.time.addEvent({
-            delay: 100,
-            callback: this.tick,
-            callbackScope: this,
-            loop: true
-        });
-        // this.ship.setVelocityY(-100);
-    }
-    /*
-    end the jump when the pointer is up
-     */
-    endJump() {
-        this.timer.remove();
-        this.ball.setVelocityY(-this.power * 100);
-        this.power = 0;
-    }
-    tick() {
-        if (this.power < 5) {
-            this.power += .1;
-            console.log(this.power);
-        }
-    }
-    update() {
-        //constant running loop
-    }
-}
-
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
 
@@ -193,6 +134,34 @@ class GameScene extends Phaser.Scene {
         this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
       }.bind(this)
     )
+        //Divider
+    this.ship = this.physics.add.sprite(50, 380, 'idle');
+    this.ship.setScale(.3);
+    this.ship.setGravityY(300);
+    this.ship.setBounce(0.2);
+    this.ship.setCollideWorldBounds(true);
+    this.physics.add.collider(this.ship, this.platforms);
+    this.cursorKeys = this.input.keyboard.createCursorKeys()
+}
+
+update() {
+    this.moveShip()
+}
+
+moveShip() {
+    if (this.cursorKeys.left.isDown) {
+        this.ship.setVelocityX(-300)
+    } else if (this.cursorKeys.right.isDown) {
+        this.ship.setVelocityX(300)
+    } else {
+        this.ship.setVelocityX(0);
+        this.ship.setVelocityY(0);
+    }
+    if (this.cursorKeys.up.isDown && this.ship.body.touching.down) {
+        this.ship.setVelocityY(-300);
+    }
+}
+
   /**
    * Should be overridden by your own Scenes.
    * This method is called once per game step while the scene is running.
@@ -245,4 +214,5 @@ class GameScene extends Phaser.Scene {
       }
     })
   }
+}
 export default GameScene
