@@ -29,7 +29,8 @@ class GameScene extends Phaser.Scene {
   constructor() {
     super({ key: "gameScene" })
 
-    this.background = (1920 * 2, 1080)
+    this.background = null
+    this.background2 = null
     this.ship = null
     this.fireMissile = false
     this.score = 0
@@ -63,7 +64,7 @@ class GameScene extends Phaser.Scene {
   preload() {
     console.log("Game Scene")
     //images
-    this.load.image("starBackground", "assets/mainBackground.jpg")
+    this.load.image("starBackground", "assets/image (1).png")
     this.load.image("ship", "assets/oie_8185832gsYBY41F-removebg-preview.png")
     this.load.image("missile", "assets/missile.png")
     this.load.image("alien", "assets/alien.png")
@@ -81,6 +82,8 @@ class GameScene extends Phaser.Scene {
   create(data) {
     this.background = this.add.image(0, 0, "starBackground").setScale(2.0)
     this.background.setOrigin(0, 0)
+    this.background2 = this.add.image(1024 * 2, 576, "starBackground").setScale(0.0)
+    this.background2.setOrigin(1024 * 2, 576)
 
     this.scoreText = this.add.text(
       100,
@@ -147,6 +150,19 @@ class GameScene extends Phaser.Scene {
     const keyRightObj = this.input.keyboard.addKey("RIGHT")
     const keySpaceObj = this.input.keyboard.addKey("SPACE")
 
+    // move background each tick
+    if (this.background.x >= (-1920 * 2)) {
+      this.background.x = this.background.x - 10
+    } else {
+      this.background.x = 1920 * 2
+    }
+     if (this.background2.x >= (-1920 * 2)) {
+      this.background2.x = this.background2.x - 10
+    } else {
+      console.log("move background2")
+      this.background2.x = 1920 * 2
+    }
+    
     if (keyLeftObj.isDown === true) {
       this.ship.x -= 15
       if (this.ship.x < 0) {
