@@ -161,27 +161,30 @@ class GameScene extends Phaser.Scene {
     }
 
     if (keyUpObj.isDown === true) {
-      startJump(); {
-        this.timer = this.time.addEvent( {
+      startJump()
+      {
+        this.timer = this.time.addEvent({
             delay: 100,
             callback: this.tick,
             callbackScope: this,
             loop: true
-        });
-    }
+        })
+      }
       
-    endJump(); {
-        this.timer.remove();
-        this.ship.setVelocityY(-this.power * 100);
-        this.power = 0;
-    }
-    tick(); {
-        if (this.power < 5) {
-            this.power += .1;
-            console.log(this.power);
-        }
-    }
-  }
+      endJump()
+      {
+        this.timer.remove()
+        this.ship.setVelocityY(-this.power * 100)
+        this.power = 0
+      }
+      tick()
+        {
+         if (this.power < 5) {
+           this.power += 0.1
+           console.log(this.power)
+         }
+       }
+     }
 
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
