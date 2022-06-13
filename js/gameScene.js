@@ -167,7 +167,7 @@ class GameScene extends Phaser.Scene {
           delay: 100,
           callback: this.tick,
           callbackScope: this,
-          loop: true
+          loop: true,
         })
       }
       endJump()
@@ -177,7 +177,7 @@ class GameScene extends Phaser.Scene {
         this.power = 0
       }
       tick()
-        {
+       {
          if (this.power < 5) {
            this.power += 0.1
            console.log(this.power)
