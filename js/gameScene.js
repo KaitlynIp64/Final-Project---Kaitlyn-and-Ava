@@ -161,6 +161,7 @@ class GameScene extends Phaser.Scene {
     }
 
     if (keyUpObj.isDown === true) {
+      // jump function
       startJump()
       {
         this.timer = this.time.addEvent({
@@ -184,7 +185,7 @@ class GameScene extends Phaser.Scene {
          }
        }
      }
-
+    
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
         // fire missile
