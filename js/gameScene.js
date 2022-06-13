@@ -188,14 +188,14 @@ class GameScene extends Phaser.Scene {
         this.power = 0
       }
       tick()
-       {
-         if (this.power < 5) {
-           this.power += 0.1
-           console.log(this.power)
-         }
-       }
-     }
-    
+      {
+        if (this.power < 5) {
+          this.power += 0.1
+          console.log(this.power)
+        }
+      }
+    }
+
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
         // fire missile
