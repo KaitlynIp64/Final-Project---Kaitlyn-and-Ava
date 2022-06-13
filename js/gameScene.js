@@ -164,13 +164,12 @@ class GameScene extends Phaser.Scene {
       startJump()
       {
         this.timer = this.time.addEvent({
-            delay: 100,
-            callback: this.tick,
-            callbackScope: this,
-            loop: true
+          delay: 100,
+          callback: this.tick,
+          callbackScope: this,
+          loop: true
         })
       }
-      
       endJump()
       {
         this.timer.remove()
