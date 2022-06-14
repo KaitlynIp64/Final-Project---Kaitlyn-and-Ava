@@ -91,7 +91,7 @@ class GameScene extends Phaser.Scene {
       this.scoreTextStyle
     )
 
-    this.ship = this.physics.add.sprite(1920 / 2, 1080 - 200, "ship")
+    this.ship = this.physics.add.sprite(1920 / 6, 1080 - 200, "ship")
 
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
@@ -107,7 +107,6 @@ class GameScene extends Phaser.Scene {
       function (missileCollide, alienCollide) {
         alienCollide.destroy()
         missileCollide.destroy()
-        this.sound.play("explosion")
         this.score = this.score + 1
         this.scoreText.setText("Score: " + this.score.toString())
         this.createAlien()
