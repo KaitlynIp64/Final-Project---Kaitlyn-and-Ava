@@ -159,7 +159,7 @@ class GameScene extends Phaser.Scene {
       console.log("move background1")
       this.background.x = 1920 * 2
     }
-     if (this.background2.x >= -1920 * 2) {
+    if (this.background2.x >= -1920 * 2) {
       this.background2.x = this.background2.x - 2
     } else {
       console.log("move background2")
