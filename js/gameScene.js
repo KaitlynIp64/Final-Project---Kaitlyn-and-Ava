@@ -1,8 +1,8 @@
 /* global Phaser */
 
-// Copyright (c) 2022 Ava Venturino All rights reserved
+// Copyright (c) 2022 Ava Venturino Kaitlyn Ip All rights reserved
 //
-// Created by: Ava Venturino
+// Created by: Ava Venturino & Kaitlyn Ip
 // Created on: Apr 2022
 // This file contains the JS functions for index.html
 
@@ -14,46 +14,43 @@ class GameScene extends Phaser.Scene {
    * create an alien
    */
   createAlien() {
-    const alienXLocation = Math.floor(Math.random() * 1920) + 1 // this will get a number between 1 and 1920
-    let alienXVelocity = Math.floor(Math.random() * 50) + 1 // this will get a number between 1 and 50
-    alienXVelocity *= Math.round(Math.random()) ? 1 : -1 // thiis will add minus sign in 50% of cases
-    const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien")
-    anAlien.body.velocity.y = 200
-    anAlien.body.velocity.x = alienXVelocity
-    this.alienGroup.add(anAlien)
+    const alienXLocation = Math.floor(Math.random() * 1920) + 1; // this will get a number between 1 and 1920
+    let alienXVelocity = Math.floor(Math.random() * 50) + 1; // this will get a number between 1 and 50
+    alienXVelocity *= Math.round(Math.random()) ? 1 : -1; // thiis will add minus sign in 50% of cases
+    const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien");
+    anAlien.body.velocity.y = 200;
+    anAlien.body.velocity.x = alienXVelocity;
+    this.alienGroup.add(anAlien);
   }
 
-  createstartJump() {
-    const alienXLocation = Math.floor(Math.random() * 1920) + 1 // this will get a number between 1 and 1920
-    let alienXVelocity = Math.floor(Math.random() * 50) + 1 // this will get a number between 1 and 50
-    alienXVelocity *= Math.round(Math.random()) ? 1 : -1 // thiis will add minus sign in 50% of cases
-    const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien")
-    anAlien.body.velocity.y = 200
-    anAlien.body.velocity.x = alienXVelocity
-    this.alienGroup.add(anAlien)
+  function startJump() {
+    const aShip = this.physics.add.sprite(shipXLocation, -100, "ship");
+    aShip.body.velocity.y = 200;
+    aShip.body.velocity.x = shipXVelocity;
+    this.shipGroup.add(aShip);
   }
 
   /**
    * This method is the constructor
    */
   constructor() {
-    super({ key: "gameScene" })
+    super({ key: "gameScene" });
 
-    this.background = null
-    this.ship = null
-    this.fireMissile = false
-    this.score = 0
-    this.scoreText = null
+    this.background = null;
+    this.ship = null;
+    this.fireMissile = false;
+    this.score = 0;
+    this.scoreText = null;
     this.scoreTextStyle = {
       font: "65px Ariel",
       fill: "#ffffff",
       align: "center",
-    }
+    };
     this.gameOverTextStyle = {
       font: "65px Ariel",
       fill: "#ff0000",
       align: "center",
-    }
+    };
   }
 
   /**
@@ -63,7 +60,7 @@ class GameScene extends Phaser.Scene {
    * @param {object} data - Any data via ScenePlugin.add() or ScenePlugin.start().
    */
   init(data) {
-    this.cameras.main.setBackgroundColor("#ffffff")
+    this.cameras.main.setBackgroundColor("#ffffff");
   }
 
   /**
@@ -71,12 +68,12 @@ class GameScene extends Phaser.Scene {
    * Use it to load assets.
    */
   preload() {
-    console.log("Game Scene")
+    console.log("Game Scene");
     //images
-    this.load.image("starBackground", "assets/mainBackground.jpg")
-    this.load.image("ship", "assets/oie_8185832gsYBY41F-removebg-preview.png")
-    this.load.image("missile", "assets/missile.png")
-    this.load.image("alien", "assets/alien.png")
+    this.load.image("starBackground", "assets/mainBackground.jpg");
+    this.load.image("ship", "assets/oie_8185832gsYBY41F-removebg-preview.png");
+    this.load.image("missile", "assets/missile.png");
+    this.load.image("alien", "assets/alien.png");
   }
 
   /**
@@ -85,49 +82,49 @@ class GameScene extends Phaser.Scene {
    * @param {object} data - Any data via ScenePlugin.add() or ScenePlugin.start().
    */
   create(data) {
-    this.background = this.add.image(0, 0, "starBackground").setScale(2.0)
-    this.background.setOrigin(0, 0)
+    this.background = this.add.image(0, 0, "starBackground").setScale(2.0);
+    this.background.setOrigin(0, 0);
 
     this.scoreText = this.add.text(
       10,
       10,
       "Score: " + this.score.toString(),
       this.scoreTextStyle
-    )
+    );
 
-    this.ship = this.physics.add.sprite(1920 / 2, 1080 - 200, "ship")
+    this.ship = this.physics.add.sprite(1920 / 2, 1080 - 200, "ship");
 
     // create a group for the missiles
-    this.missileGroup = this.physics.add.group()
+    this.missileGroup = this.physics.add.group();
 
     // create a group for the aliens
-    this.alienGroup = this.add.group()
-    this.createAlien()
+    this.alienGroup = this.add.group();
+    this.createAlien();
 
     //Collisions between missiles and aliens
     this.physics.add.collider(
       this.missileGroup,
       this.alienGroup,
       function (missileCollide, alienCollide) {
-        alienCollide.destroy()
-        missileCollide.destroy()
-        this.sound.play("explosion")
-        this.score = this.score + 1
-        this.scoreText.setText("Score: " + this.score.toString())
-        this.createAlien()
-        this.createAlien()
+        alienCollide.destroy();
+        missileCollide.destroy();
+        this.sound.play("explosion");
+        this.score = this.score + 1;
+        this.scoreText.setText("Score: " + this.score.toString());
+        this.createAlien();
+        this.createAlien();
       }.bind(this)
-    )
+    );
 
     // Collisions between ship and aliens
     this.physics.add.collider(
       this.ship,
       this.alienGroup,
       function (shipCollide, alienCollide) {
-        this.sound.play("bomb")
-        this.physics.pause()
-        alienCollide.destroy()
-        shipCollide.destroy()
+        this.sound.play("bomb");
+        this.physics.pause();
+        alienCollide.destroy();
+        shipCollide.destroy();
         this.gameOverText = this.add
           .text(
             1920 / 2,
@@ -135,11 +132,13 @@ class GameScene extends Phaser.Scene {
             "Game Over!\nClick to play again.",
             this.gameOverTextStyle
           )
-          .setOrigin(0.5)
-        this.gameOverText.setInteractive({ userHandCursor: true })
-        this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
+          .setOrigin(0.5);
+        this.gameOverText.setInteractive({ userHandCursor: true });
+        this.gameOverText.on("pointerdown", () =>
+          this.scene.start("gameScene")
+        );
       }.bind(this)
-    )
+    );
   }
 
   /**
@@ -151,47 +150,47 @@ class GameScene extends Phaser.Scene {
   update(time, delta) {
     // called 60 times a second, hopefully!
 
-    const keyLeftObj = this.input.keyboard.addKey("LEFT")
-    const keyRightObj = this.input.keyboard.addKey("RIGHT")
-    const keyUpObj = this.input.keyboard.addKey("UP")
-    const keySpaceObj = this.input.keyboard.addKey("SPACE")
+    const keyLeftObj = this.input.keyboard.addKey("LEFT");
+    const keyRightObj = this.input.keyboard.addKey("RIGHT");
+    const keyUpObj = this.input.keyboard.addKey("UP");
+    const keySpaceObj = this.input.keyboard.addKey("SPACE");
 
     if (keyLeftObj.isDown === true) {
-      this.ship.x -= 15
+      this.ship.x -= 15;
       if (this.ship.x < 0) {
-        this.ship.x = 0
+        this.ship.x = 0;
       }
     }
 
     if (keyRightObj.isDown === true) {
-      this.ship.x += 15
+      this.ship.x += 15;
       if (this.ship.x > 1920) {
-        this.ship.x = 1920
+        this.ship.x = 1920;
       }
     }
 
     if (keyUpObj.isDown === true) {
       // jump function
-      startJump()
+      startJump();
       {
         this.timer = this.time.addEvent({
           delay: 100,
           callback: this.tick,
           callbackScope: this,
           loop: true,
-        })
+        });
       }
-      endJump()
+      endJump();
       {
-        this.timer.remove()
-        this.ship.setVelocityY(-this.power * 100)
-        this.power = 0
+        this.timer.remove();
+        this.ship.setVelocityY(-this.power * 100);
+        this.power = 0;
       }
-      tick()
+      tick();
       {
         if (this.power < 5) {
-          this.power += 0.1
-          console.log(this.power)
+          this.power += 0.1;
+          console.log(this.power);
         }
       }
     }
@@ -199,27 +198,27 @@ class GameScene extends Phaser.Scene {
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
         // fire missile
-        this.fireMissile = true
+        this.fireMissile = true;
         const aNewMissile = this.physics.add.sprite(
           this.ship.x,
           this.ship.y,
           "missile"
-        )
-        this.missileGroup.add(aNewMissile)
-        this.sound.play("laser")
+        );
+        this.missileGroup.add(aNewMissile);
+        this.sound.play("laser");
       }
     }
 
     if (keySpaceObj.isUp === true) {
-      this.fireMissile = false
+      this.fireMissile = false;
     }
 
     this.missileGroup.children.each(function (item) {
-      item.y = item.y - 15
+      item.y = item.y - 15;
       if (item.y < 0) {
-        item.destroy()
+        item.destroy();
       }
-    })
+    });
   }
 }
-export default GameScene
+export default GameScene;
