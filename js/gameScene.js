@@ -3,7 +3,7 @@
 // Copyright (c) 2022 Ava Venturino Kaitlyn Ip All rights reserved
 //
 // Created by: Ava Venturino & Kaitlyn Ip
-// Created on: Apr 2022
+// Created on: Jun 2022
 // This file contains the JS functions for index.html
 
 /**
@@ -67,8 +67,8 @@ class GameScene extends Phaser.Scene {
     //images
     this.load.image("starBackground", "assets/image (1).png")
     this.load.image("ship", "assets/oie_8185832gsYBY41F-removebg-preview.png")
-    this.load.image("missile", "assets/missile.png")
-    this.load.image("alien", "assets/alien.png")
+    this.load.image("missile", "assets/explosion.png")
+    this.load.image("alien", "assets/8-ElQE9w-removebg-preview.png")
   }
 
   /**
