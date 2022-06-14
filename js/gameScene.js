@@ -83,7 +83,7 @@ class GameScene extends Phaser.Scene {
     this.background = this.add.image(0, 0, "starBackground").setScale(2.0)
     this.background.setOrigin(0, 0)
     this.background2 = this.add
-      .image((1920 * 2), 0, "starBackground")
+      .image(1920 * 2, 0, "starBackground")
       .setScale(2.0)
     this.background2.setOrigin(0, 0)
 
