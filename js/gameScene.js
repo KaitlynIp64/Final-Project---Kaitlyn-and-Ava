@@ -23,13 +23,6 @@ class GameScene extends Phaser.Scene {
     this.alienGroup.add(anAlien);
   }
 
-  function startJump() {
-    const aShip = this.physics.add.sprite(shipXLocation, -100, "ship");
-    aShip.body.velocity.y = 200;
-    aShip.body.velocity.x = shipXVelocity;
-    this.shipGroup.add(aShip);
-  }
-
   /**
    * This method is the constructor
    */
@@ -153,6 +146,7 @@ class GameScene extends Phaser.Scene {
     const keyLeftObj = this.input.keyboard.addKey("LEFT");
     const keyRightObj = this.input.keyboard.addKey("RIGHT");
     const keyUpObj = this.input.keyboard.addKey("UP");
+    const keyDownObj = this.input.keyboard.addKey("DOWN");
     const keySpaceObj = this.input.keyboard.addKey("SPACE");
 
     if (keyLeftObj.isDown === true) {
@@ -170,31 +164,20 @@ class GameScene extends Phaser.Scene {
     }
 
     if (keyUpObj.isDown === true) {
-      // jump function
-      startJump();
-      {
-        this.timer = this.time.addEvent({
-          delay: 100,
-          callback: this.tick,
-          callbackScope: this,
-          loop: true,
-        });
-      }
-      endJump();
-      {
-        this.timer.remove();
-        this.ship.setVelocityY(-this.power * 100);
-        this.power = 0;
-      }
-      tick();
-      {
-        if (this.power < 5) {
-          this.power += 0.1;
-          console.log(this.power);
-        }
+      this.ship.y -= 15
+      if (this.ship.y < 0) {
+        this.ship.y = 0
       }
     }
 
+    // Moves the character down
+    if (keyDownObj.isDown === true) {
+      this.ship.y += 15
+      if (this.ship.y > 1080) {
+        this.ship.y = 1080
+      }
+    }
+  
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
         // fire missile
