@@ -1,8 +1,8 @@
 /* global Phaser */
 
-// Copyright (c) 2022 Ava Venturino All rights reserved
+// Copyright (c) 2022 Ava Venturino Kaitlyn Ip All rights reserved
 //
-// Created by: Ava Venturino
+// Created by: Ava Venturino & Kaitlyn Ip
 // Created on: Apr 2022
 // This file contains the JS functions for index.html
 
@@ -35,6 +35,7 @@ class GameScene extends Phaser.Scene {
     this.fireMissile = false
     this.score = 0
     this.scoreText = null
+
     this.scoreTextStyle = {
       font: "65px Ariel",
       fill: "#ffffff",
@@ -68,10 +69,6 @@ class GameScene extends Phaser.Scene {
     this.load.image("ship", "assets/oie_8185832gsYBY41F-removebg-preview.png")
     this.load.image("missile", "assets/missile.png")
     this.load.image("alien", "assets/alien.png")
-    // sound
-    this.load.audio("laser", "assets/laser1.wav")
-    this.load.audio("explosion", "assets/barrelExploding.wav")
-    this.load.audio("bomb", "assets/bomb.wav")
   }
 
   /**
@@ -140,6 +137,7 @@ class GameScene extends Phaser.Scene {
       }.bind(this)
     )
   }
+
   /**
    * Should be overridden by your own Scenes.
    * This method is called once per game step while the scene is running.
@@ -148,8 +146,11 @@ class GameScene extends Phaser.Scene {
    */
   update(time, delta) {
     // called 60 times a second, hopefully!
+
     const keyLeftObj = this.input.keyboard.addKey("LEFT")
     const keyRightObj = this.input.keyboard.addKey("RIGHT")
+    const keyUpObj = this.input.keyboard.addKey("UP")
+    const keyDownObj = this.input.keyboard.addKey("DOWN")
     const keySpaceObj = this.input.keyboard.addKey("SPACE")
 
     // move background each tick
@@ -177,6 +178,21 @@ class GameScene extends Phaser.Scene {
       this.ship.x += 15
       if (this.ship.x > 1920) {
         this.ship.x = 1920
+      }
+    }
+
+    if (keyUpObj.isDown === true) {
+      this.ship.y -= 15
+      if (this.ship.y < 0) {
+        this.ship.y = 0
+      }
+    }
+
+    // Moves the character down
+    if (keyDownObj.isDown === true) {
+      this.ship.y += 15
+      if (this.ship.y > 1080) {
+        this.ship.y = 1080
       }
     }
 
