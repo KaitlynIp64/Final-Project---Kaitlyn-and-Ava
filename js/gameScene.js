@@ -82,7 +82,9 @@ class GameScene extends Phaser.Scene {
   create(data) {
     this.background = this.add.image(0, 0, "starBackground").setScale(2.0)
     this.background.setOrigin(0, 0)
-    this.background2 = this.add.image((1920 * 2), 0, "starBackground").setScale(2.0)
+    this.background2 = this.add
+      .image((1920 * 2), 0, "starBackground")
+      .setScale(2.0)
     this.background2.setOrigin(0, 0)
 
     this.scoreText = this.add.text(
@@ -151,18 +153,19 @@ class GameScene extends Phaser.Scene {
     const keySpaceObj = this.input.keyboard.addKey("SPACE")
 
     // move background each tick
-    if (this.background.x >= (-1920 * 2)) {
+    if (this.background.x >= -1920 * 2) {
       this.background.x = this.background.x - 2
     } else {
+      console.log("move background1")
       this.background.x = 1920 * 2
     }
-     if (this.background2.x >= (-1920 * 2)) {
+     if (this.background2.x >= -1920 * 2) {
       this.background2.x = this.background2.x - 2
     } else {
       console.log("move background2")
       this.background2.x = 1920 * 2
     }
-    
+
     if (keyLeftObj.isDown === true) {
       this.ship.x -= 15
       if (this.ship.x < 0) {
