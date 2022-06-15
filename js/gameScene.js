@@ -190,17 +190,16 @@ class GameScene extends Phaser.Scene {
           "missile"
         )
         this.missileGroup.add(aNewMissile)
-        this.sound.play("laser")
       }
     }
 
     if (keySpaceObj.isUp === true) {
       this.fireMissile = false
     }
-
+    
     this.missileGroup.children.each(function (item) {
-      item.y = item.y - 15
-      if (item.y < 0) {
+      item.x = item.x + 15
+      if (item.x < 0) {
         item.destroy()
       }
     })
