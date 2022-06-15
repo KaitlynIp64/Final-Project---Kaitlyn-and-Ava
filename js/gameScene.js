@@ -3,7 +3,7 @@
 // Copyright (c) 2022 Ava Venturino Kaitlyn Ip All rights reserved
 //
 // Created by: Ava Venturino & Kaitlyn Ip
-// Created on: Apr 2022
+// Created on: Jun 2022
 // This file contains the JS functions for index.html
 
 /**
@@ -67,8 +67,8 @@ class GameScene extends Phaser.Scene {
     //images
     this.load.image("starBackground", "assets/image (1).png")
     this.load.image("ship", "assets/oie_8185832gsYBY41F-removebg-preview.png")
-    this.load.image("missile", "assets/missile.png")
-    this.load.image("alien", "assets/alien.png")
+    this.load.image("missile", "assets/explosion.png")
+    this.load.image("alien", "assets/8-ElQE9w-removebg-preview.png")
   }
 
   /**
@@ -91,7 +91,7 @@ class GameScene extends Phaser.Scene {
       this.scoreTextStyle
     )
 
-    this.ship = this.physics.add.sprite(1920 / 2, 1080 - 200, "ship")
+    this.ship = this.physics.add.sprite(1920 / 6, 1080 - 200, "ship")
 
     // create a group for the missiles
     this.missileGroup = this.physics.add.group()
@@ -107,7 +107,6 @@ class GameScene extends Phaser.Scene {
       function (missileCollide, alienCollide) {
         alienCollide.destroy()
         missileCollide.destroy()
-        this.sound.play("explosion")
         this.score = this.score + 1
         this.scoreText.setText("Score: " + this.score.toString())
         this.createAlien()
@@ -120,7 +119,6 @@ class GameScene extends Phaser.Scene {
       this.ship,
       this.alienGroup,
       function (shipCollide, alienCollide) {
-        this.sound.play("bomb")
         this.physics.pause()
         alienCollide.destroy()
         shipCollide.destroy()
@@ -165,20 +163,6 @@ class GameScene extends Phaser.Scene {
     } else {
       console.log("move background2")
       this.background2.x = 1920 * 2
-    }
-
-    if (keyLeftObj.isDown === true) {
-      this.ship.x -= 15
-      if (this.ship.x < 0) {
-        this.ship.x = 0
-      }
-    }
-
-    if (keyRightObj.isDown === true) {
-      this.ship.x += 15
-      if (this.ship.x > 1920) {
-        this.ship.x = 1920
-      }
     }
 
     if (keyUpObj.isDown === true) {
