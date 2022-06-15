@@ -119,7 +119,6 @@ class GameScene extends Phaser.Scene {
       this.ship,
       this.alienGroup,
       function (shipCollide, alienCollide) {
-        this.sound.play("bomb")
         this.physics.pause()
         alienCollide.destroy()
         shipCollide.destroy()
