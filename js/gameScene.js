@@ -126,7 +126,7 @@ class GameScene extends Phaser.Scene {
           .text(
             1920 / 2,
             1080 / 2,
-            "Ha, You lost, loser!\nClick to try again.",
+            "Ha you lost, loser!\nClick to try again.",
             this.gameOverTextStyle
           )
           .setOrigin(0.5)
