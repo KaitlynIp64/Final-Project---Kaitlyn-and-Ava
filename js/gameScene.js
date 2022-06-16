@@ -69,6 +69,9 @@ class GameScene extends Phaser.Scene {
     this.load.image("ship", "assets/oie_8185832gsYBY41F-removebg-preview.png")
     this.load.image("missile", "assets/explosion.png")
     this.load.image("alien", "assets/8-ElQE9w-removebg-preview.png")
+    // sound
+    this.load.audio("die", "assets/dieaudio.mp3")
+    this.load.audio("bomb", "assets/explosion.mp3")
   }
 
   /**
@@ -119,6 +122,7 @@ class GameScene extends Phaser.Scene {
       this.ship,
       this.alienGroup,
       function (shipCollide, alienCollide) {
+        this.sound.play("die")
         this.physics.pause()
         alienCollide.destroy()
         shipCollide.destroy()
@@ -188,6 +192,7 @@ class GameScene extends Phaser.Scene {
           "missile"
         )
         this.missileGroup.add(aNewMissile)
+        this.sound.play("bomb")
       }
     }
 
