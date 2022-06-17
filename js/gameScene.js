@@ -15,7 +15,7 @@ class GameScene extends Phaser.Scene {
    */
   createAlien() {
     const alienYLocation = Math.floor(Math.random() * 1080) + 1 // this will get a number between 1 and 1080
-    let alienXVelocity = Math.floor(1 * 920) // this will get a number between 1 and 50
+    let alienXVelocity = Math.floor(1 * 720) // this will get a number between 1 and 50
     alienXVelocity *= Math.round(Math.random()) ? -1 : -1 // this will add minus sign in 50% of cases
     const anAlien = this.physics.add.sprite(1920, alienYLocation, "alien")
     anAlien.body.velocity.y = 30
