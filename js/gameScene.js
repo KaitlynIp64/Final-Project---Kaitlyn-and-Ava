@@ -17,7 +17,11 @@ class GameScene extends Phaser.Scene {
     const shigarakiYLocation = Math.floor(Math.random() * 1080) + 1 // this will get a number between 1 and 1080
     let shigarakiXVelocity = Math.floor(1 * 920) // this will get a number between 1 and 50
     shigarakiXVelocity *= Math.round(Math.random()) ? -1 : -1 // this will add minus sign in 50% of cases
-    const aShigaraki = this.physics.add.sprite(1920, shigarakiYLocation, "shigaraki")
+    const aShigaraki = this.physics.add.sprite(
+      1920,
+      shigarakiYLocation,
+      "shigaraki"
+    )
     aShigaraki.body.velocity.y = 30
     aShigaraki.body.velocity.x = shigarakiXVelocity
     this.shigarakiGroup.add(aShigaraki)
@@ -66,7 +70,10 @@ class GameScene extends Phaser.Scene {
     console.log("Game Scene")
     //images
     this.load.image("startbackground", "assets/image (1).png")
-    this.load.image("bakugou", "assets/oie_8185832gsYBY41F-removebg-preview.png")
+    this.load.image(
+      "bakugou",
+      "assets/oie_8185832gsYBY41F-removebg-preview.png"
+    )
     this.load.image("explosion", "assets/explosion.png")
     this.load.image("shigaraki", "assets/8-ElQE9w-removebg-preview.png")
     // sound
