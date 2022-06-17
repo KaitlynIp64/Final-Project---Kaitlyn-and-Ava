@@ -13,14 +13,14 @@ class GameScene extends Phaser.Scene {
   /**
    * create an shigaraki
    */
-  createshigaraki() {
+  createShigaraki() {
     const shigarakiYLocation = Math.floor(Math.random() * 1080) + 1 // this will get a number between 1 and 1080
     let shigarakiXVelocity = Math.floor(1 * 920) // this will get a number between 1 and 50
     shigarakiXVelocity *= Math.round(Math.random()) ? -1 : -1 // this will add minus sign in 50% of cases
-    const anshigaraki = this.physics.add.sprite(1920, shigarakiYLocation, "shigaraki")
-    anshigaraki.body.velocity.y = 30
-    anshigaraki.body.velocity.x = shigarakiXVelocity
-    this.shigarakiGroup.add(anshigaraki)
+    const aShigaraki = this.physics.add.sprite(1920, shigarakiYLocation, "shigaraki")
+    aShigaraki.body.velocity.y = 30
+    aShigaraki.body.velocity.x = shigarakiXVelocity
+    this.shigarakiGroup.add(aShigaraki)
   }
 
   /**
@@ -32,7 +32,7 @@ class GameScene extends Phaser.Scene {
     this.background = null
     this.background2 = null
     this.bakugou = null
-    this.fireexplosion = false
+    this.fireExplosion = false
     this.score = 0
     this.scoreText = null
 
@@ -101,7 +101,7 @@ class GameScene extends Phaser.Scene {
 
     // create a group for the shigarakis
     this.shigarakiGroup = this.add.group()
-    this.createshigaraki()
+    this.createShigaraki()
 
     //Collisions between explosions and shigarakis
     this.physics.add.collider(
@@ -112,8 +112,8 @@ class GameScene extends Phaser.Scene {
         explosionCollide.destroy()
         this.score = this.score + 1
         this.scoreText.setText("Score: " + this.score.toString())
-        this.createshigaraki()
-        this.createshigaraki()
+        this.createShigaraki()
+        this.createShigaraki()
       }.bind(this)
     )
 
@@ -183,9 +183,9 @@ class GameScene extends Phaser.Scene {
     }
 
     if (keySpaceObj.isDown === true) {
-      if (this.fireexplosion === false) {
+      if (this.fireExplosion === false) {
         // fire explosion
-        this.fireexplosion = true
+        this.fireExplosion = true
         const aNewexplosion = this.physics.add.sprite(
           this.bakugou.x,
           this.bakugou.y,
@@ -197,7 +197,7 @@ class GameScene extends Phaser.Scene {
     }
 
     if (keySpaceObj.isUp === true) {
-      this.fireexplosion = false
+      this.fireExplosion = false
     }
 
     this.explosionGroup.children.each(function (item) {
