@@ -72,10 +72,10 @@ class GameScene extends Phaser.Scene {
     this.load.image("startbackground", "assets/image (1).png")
     this.load.image(
       "bakugou",
-      "assets/oie_8185832gsYBY41F-removebg-preview.png"
+      "assets/bakugou.png"
     )
     this.load.image("explosion", "assets/explosion.png")
-    this.load.image("shigaraki", "assets/8-ElQE9w-removebg-preview.png")
+    this.load.image("shigaraki", "assets/shig.png")
     // sound
     this.load.audio("die", "assets/dieaudio.mp3")
     this.load.audio("bomb", "assets/explosion.mp3")
