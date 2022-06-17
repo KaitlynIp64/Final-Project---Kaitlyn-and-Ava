@@ -70,7 +70,7 @@ class GameScene extends Phaser.Scene {
     console.log("Game Scene")
     //images
     this.load.image("startbackground", "assets/image (1).png")
-    this.load.image("bakugou","assets/bakugou.png")
+    this.load.image("bakugou", "assets/bakugou.png")
     this.load.image("explosion", "assets/explosion.png")
     this.load.image("shigaraki", "assets/shig.png")
     // sound
