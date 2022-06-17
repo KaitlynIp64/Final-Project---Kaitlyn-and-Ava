@@ -154,17 +154,17 @@ class GameScene extends Phaser.Scene {
     const keySpaceObj = this.input.keyboard.addKey("SPACE")
 
     // move background each tick
-    if (this.background.x >= -1920 * 2) {
+    if (this.background.x >= -1900 * 2) {
       this.background.x = this.background.x - 2
     } else {
       console.log("move background1")
-      this.background.x = 1920 * 2
+      this.background.x = 1900 * 2
     }
-    if (this.background2.x >= -1920 * 2) {
+    if (this.background2.x >= -1900 * 2) {
       this.background2.x = this.background2.x - 2
     } else {
       console.log("move background2")
-      this.background2.x = 1920 * 2
+      this.background2.x = 1900 * 2
     }
 
     if (keyUpObj.isDown === true) {
