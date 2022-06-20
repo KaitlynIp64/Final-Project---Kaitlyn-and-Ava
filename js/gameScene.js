@@ -14,7 +14,6 @@ class GameScene extends Phaser.Scene {
    * create an shigaraki
    */
   createShigaraki() {
-    // this creates the enemy Shigaraki
     const shigarakiYLocation = Math.floor(Math.random() * 1080) + 1 // this will get a number between 1 and 1080
     let shigarakiXVelocity = Math.floor(1 * 920) // this will get a number between 1 and 50
     shigarakiXVelocity *= Math.round(Math.random()) ? -1 : -1 // this will add minus sign in 50% of cases
